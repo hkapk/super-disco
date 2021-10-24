@@ -100,17 +100,18 @@ const buildCalendar = (scheduleList) => {
     //there is a bug here, 9AM is set to future...        
         //apply present class for hour block equal to current time
 
+        if (currentTime < hourBlock?.time){
+            taskDisplay.classList.add("future");
+            } else {
+                taskDisplay.classList.remove("future");
+                taskDisplay.classList.add("past")};
+        
         if (currentTime === hourBlock?.time){
             //taskDisplay.classList.remove("future");
             taskDisplay.classList.add("present");
             //apply past time to blocks at times < the current time
-        } 
-        if (currentTime < hourBlock?.time){
-            taskDisplay.classList.add("future");
-            }
-            else {
-            taskDisplay.classList.remove("future");
-            taskDisplay.classList.add("past")};
+        }
+           
 
 
         
