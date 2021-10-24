@@ -17,7 +17,7 @@ $(currentDay).text(today);
 
 //create an array of the times 
 const scheduleList = [
-    {time: "9AM", task: ""},
+    {time: "09AM", task: ""},
     {time: "10AM", task: ""},
     {time: "11AM", task: ""},
     {time: "12PM", task: ""},
@@ -29,7 +29,7 @@ const scheduleList = [
  ];
 
 const updatedList = [
-    {time: "9AM", task: ""},
+    {time: "09AM", task: ""},
     {time: "10AM", task: ""},
     {time: "11AM", task: ""},
     {time: "12PM", task: ""},
