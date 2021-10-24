@@ -2,7 +2,7 @@ var currentDay = $('#currentDay');
 var container = $('.container');
 
 //create today
-const today = moment().format('dddd MMMM do YYYY');
+const today = moment().format('dddd, MMMM DD, YYYY');
 
 //create right now
 const currentTime = moment().format("HA");
@@ -38,17 +38,16 @@ const updateTasks = (time, task) => {
     const timeTaskObj = {time: time, task: matchingTask.value};
     //push that new object to updatedList
     //console.log(timeTaskObj);
-    
     updatedList.push(timeTaskObj);
     //console.log(updatedList);
     //save updatedList to localStorage
     //syntax for local storage
     localStorage.setItem("updatedList",JSON.stringify(updatedList));
     
-    
-    
     //console.log(time, task);
-}
+};
+
+
 
 //function to build the calendar/ display the calendar on the page
 const buildCalendar = (scheduleList) => {
@@ -72,33 +71,65 @@ const buildCalendar = (scheduleList) => {
         taskDisplay.classList.add(`${timeDisplay.textContent}-input`);
 
         timeDisplay.classList.add("hour");
-        taskDisplay.classList.add("time-block");
+
+        
+        //if statements for setting classes based on moment()
+
+
+        
+        taskDisplay.classList.add("future");
+
         row.classList.add("row");
         saveBtn.classList.add("saveBtn");
-    
-        //if input class 'time' -- check moment documentation 
+        saveBtn.textContent = "save";
+        
+        //if input class 'time' -- check moment documentation else, else
+        if (currentTime === hourBlock?.time){
+            taskDisplay.classList.remove("future");
+            taskDisplay.classList.add("present");
+        } else (currentTime < hourBlock?.time); {
+            taskDisplay.classList.remove("future")
+            taskDisplay.classList.add("past");}
+
+
+            
+
+
+        // } else (currentTime > hourBlock?.time); {
+        //     taskDisplay.classList.add("future");
+        // };
+   
+
+
+
+
+
 
         
         row.appendChild(timeDisplay);
         row.appendChild(taskDisplay);
         row.appendChild(saveBtn);
 
-    
+
+
         container.append(row);
         return row;
 
-        
 
     })
 
 };
 
-//if statement for 
-// if there is an updated list in Local Storage ){
-//  buildCalendar(localStorage.updatedList);   (the one in local Storage)
-//   }else buildCalendar(scheduleList);
-
+//if statement for pulling from local Storage if it exists
+if (localStorage.getItem('updatedList')) {
+console.log("local storage exists");
 buildCalendar(scheduleList);
+} else 
+  buildCalendar(scheduleList);
+
+//updateTasks(time, task);
+
+//buildCalendar(scheduleList);
 
 
 
@@ -109,6 +140,8 @@ buildCalendar(scheduleList);
 //else
 //if currentTime === timeDisplay then add class list .present
 //else if timeDisplay < currentTime add class list .future
+
+
 
 // const applyColor = (scheduleList) => {
 
