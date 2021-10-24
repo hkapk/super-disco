@@ -21,11 +21,11 @@ const scheduleList = [
     {time: "10AM", task: ""},
     {time: "11AM", task: ""},
     {time: "12PM", task: ""},
-    {time: "1PM", task: ""},
-    {time: "2PM", task: ""},
-    {time: "3PM", task: ""},
-    {time: "4PM", task: ""},
-    {time: "5PM", task: ""},
+    {time: "13PM", task: ""},
+    {time: "14PM", task: ""},
+    {time: "15PM", task: ""},
+    {time: "16PM", task: ""},
+    {time: "17PM", task: ""},
  ];
 
 const updatedList = [
