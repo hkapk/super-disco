@@ -28,7 +28,17 @@ const scheduleList = [
     {time: "5PM", task: ""},
  ];
 
-const updatedList = [];
+const updatedList = [
+    {time: "9AM", task: ""},
+    {time: "10AM", task: ""},
+    {time: "11AM", task: ""},
+    {time: "12PM", task: ""},
+    {time: "1PM", task: ""},
+    {time: "2PM", task: ""},
+    {time: "3PM", task: ""},
+    {time: "4PM", task: ""},
+    {time: "5PM", task: ""}
+];
 
 //updateTasks is called on the click inside of buildCalendar
 const updateTasks = (time, task) => {
@@ -41,11 +51,12 @@ const updateTasks = (time, task) => {
     //push that new object to updatedList
     //console.log(timeTaskObj);
     updatedList.push(timeTaskObj);
+    
     //console.log(updatedList);
     //save updatedList to localStorage
     //syntax for local storage
     localStorage.setItem("updatedList",JSON.stringify(updatedList));
-    
+
     //console.log(time, task);
     console.log(updatedList);
 };
@@ -98,7 +109,7 @@ const buildCalendar = (scheduleList) => {
             taskDisplay.classList.add("future");
             }
             else {
-            //taskDisplay.classList.remove("past");
+            taskDisplay.classList.remove("future");
             taskDisplay.classList.add("past")};
 
 
@@ -119,7 +130,7 @@ const buildCalendar = (scheduleList) => {
 //if statement for pulling from local Storage if it exists
 if (localStorage.getItem('updatedList')) {
 console.log("local storage exists");
-buildCalendar(scheduleList);
+buildCalendar(updatedList);
 } else 
   buildCalendar(scheduleList);
 
