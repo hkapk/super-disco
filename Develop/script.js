@@ -30,11 +30,13 @@ const scheduleList = [
 
 const updatedList = [];
 
-
+//updateTasks is called on the click inside of buildCalendar
 const updateTasks = (time, task) => {
     //use time to find matching input class and get input value
     const matchingTask = document.getElementsByClassName(`${time}-input`)[0];
     //create object with time and task keys (key value pairs)
+
+    //this is only adding a single row
     const timeTaskObj = {time: time, task: matchingTask.value};
     //push that new object to updatedList
     //console.log(timeTaskObj);
@@ -45,7 +47,9 @@ const updateTasks = (time, task) => {
     localStorage.setItem("updatedList",JSON.stringify(updatedList));
     
     //console.log(time, task);
+    console.log(updatedList);
 };
+
 
 
 
@@ -73,43 +77,35 @@ const buildCalendar = (scheduleList) => {
         timeDisplay.classList.add("hour");
 
         
-        //if statements for setting classes based on moment()
 
 
-        
-        taskDisplay.classList.add("future");
+        //add future class to all blocks
+
 
         row.classList.add("row");
         saveBtn.classList.add("saveBtn");
         saveBtn.textContent = "save";
         
-        //if input class 'time' -- check moment documentation else, else
+    //there is a bug here, 9AM is set to future...        
+        //apply present class for hour block equal to current time
+
         if (currentTime === hourBlock?.time){
-            taskDisplay.classList.remove("future");
+            //taskDisplay.classList.remove("future");
             taskDisplay.classList.add("present");
-        } else (currentTime < hourBlock?.time); {
-            taskDisplay.classList.remove("future")
-            taskDisplay.classList.add("past");}
-
-
-            
-
-
-        // } else (currentTime > hourBlock?.time); {
-        //     taskDisplay.classList.add("future");
-        // };
-   
-
-
-
-
+            //apply past time to blocks at times < the current time
+        } 
+        if (currentTime < hourBlock?.time){
+            taskDisplay.classList.add("future");
+            }
+            else {
+            //taskDisplay.classList.remove("past");
+            taskDisplay.classList.add("past")};
 
 
         
         row.appendChild(timeDisplay);
         row.appendChild(taskDisplay);
         row.appendChild(saveBtn);
-
 
 
         container.append(row);
